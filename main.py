@@ -1,9 +1,12 @@
+
 import pygame
 import numpy as np
 from InitDraw import screen, grid, CellWidth, CellHight, Margin
 from MovingOpponet import RandomMovment
+from WinIdint import checkwin
 
 running = True
+
 while running:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
@@ -20,6 +23,9 @@ while running:
         #pygame.draw.rect(screen, (255,0,0),[(((Margin + CellWidth) * column) + Margin),(Margin + CellHight) * row + Margin, CellWidth, CellHight])
         grid[row][column] = 1
         RandomMovment(grid)
+        if(checkwin(grid) != False):
+          print(checkwin(grid))
+          running = False
         if np.count_nonzero(grid)==9:
         	print("CAT WON")
    
